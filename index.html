@@ -14,7 +14,7 @@
     }
 
     body {
-      background: #000; /* Изменено на полностью черный фон */
+      background: #000;
       color: #fff;
       overflow-x: hidden;
       text-align: center;
@@ -63,13 +63,10 @@
     }
 
     /* Главная */
-    #home h1, #home p {
-      transition: opacity 1s ease-in-out;
-    }
-
     #home h1 {
       font-size: 2.5em;
       animation: fadeIn 3s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
 
     #home p {
@@ -77,6 +74,7 @@
       font-size: 1.3em;
       color: #ddd;
       animation: fadeIn 5s ease-in-out;
+      transition: opacity 1s ease-in-out;
     }
 
     @keyframes fadeIn {
@@ -124,7 +122,7 @@
       transform: scale(1.08);
     }
 
-    /* Таймер - УВЕЛИЧЕННЫЙ РАЗМЕР */
+    /* Таймер */
     .timer-container {
       margin-top: 40px;
       display: flex;
@@ -160,93 +158,6 @@
       margin-top: 5px;
       color: #ddd;
       font-weight: 500;
-    }
-
-    /* Медиа-запросы для мобильных устройств */
-    @media (max-width: 768px) {
-      .timer-container {
-        gap: 12px;
-        padding: 10px 15px;
-      }
-      
-      .timer-unit {
-        min-width: 90px;
-        padding: 18px 12px;
-      }
-      
-      .timer-value {
-        font-size: 2.2em;
-      }
-      
-      .timer-label {
-        font-size: 0.9em;
-      }
-      
-      section {
-        padding: 60px 15px;
-      }
-      
-      h1 {
-        font-size: 2em !important;
-      }
-      
-      h2 {
-        font-size: 1.5em !important;
-      }
-      
-      .gallery video {
-        width: 200px;
-        height: 200px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .timer-container {
-        gap: 8px;
-      }
-      
-      .timer-unit {
-        min-width: 80px;
-        padding: 15px 10px;
-      }
-      
-      .timer-value {
-        font-size: 2em;
-      }
-      
-      .timer-label {
-        font-size: 0.85em;
-      }
-      
-      .gallery video {
-        width: 160px;
-        height: 160px;
-      }
-    }
-
-    /* Для очень маленьких экранов */
-    @media (max-width: 360px) {
-      .timer-unit {
-        min-width: 70px;
-        padding: 12px 8px;
-      }
-      
-      .timer-value {
-        font-size: 1.8em;
-      }
-      
-      .timer-label {
-        font-size: 0.8em;
-      }
-      
-      .gallery video {
-        width: 140px;
-        height: 140px;
-      }
-      
-      .gallery {
-        gap: 15px;
-      }
     }
 
     /* Письмо */
@@ -377,6 +288,128 @@
       text-shadow: 0 0 10px #ddd;
       animation: floatUp 5s linear forwards;
     }
+
+    /* Медиа-запросы для мобильных устройств */
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 15px;
+      }
+      
+      h1 {
+        font-size: 2em !important;
+      }
+      
+      h2 {
+        font-size: 1.5em !important;
+      }
+      
+      .timer-container {
+        gap: 12px;
+        padding: 10px 15px;
+      }
+      
+      .timer-unit {
+        min-width: 90px;
+        padding: 18px 12px;
+      }
+      
+      .timer-value {
+        font-size: 2.2em;
+      }
+      
+      .timer-label {
+        font-size: 0.9em;
+      }
+      
+      .gallery video {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .love-meter {
+        padding: 30px 20px;
+      }
+      
+      .meter-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timer-container {
+        gap: 8px;
+      }
+      
+      .timer-unit {
+        min-width: 80px;
+        padding: 15px 10px;
+      }
+      
+      .timer-value {
+        font-size: 2em;
+      }
+      
+      .timer-label {
+        font-size: 0.85em;
+      }
+      
+      .gallery {
+        gap: 20px;
+      }
+      
+      .gallery video {
+        width: 160px;
+        height: 160px;
+      }
+      
+      #letter p {
+        font-size: 1.1em;
+        padding: 0 10px;
+        border-left: none;
+        text-align: center;
+      }
+      
+      .love-meter {
+        padding: 20px 15px;
+      }
+      
+      .meter-title {
+        font-size: 1.3rem;
+      }
+      
+      .meter-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .timer-unit {
+        min-width: 70px;
+        padding: 12px 8px;
+      }
+      
+      .timer-value {
+        font-size: 1.8em;
+      }
+      
+      .timer-label {
+        font-size: 0.8em;
+      }
+      
+      .gallery {
+        gap: 15px;
+      }
+      
+      .gallery video {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .meter-title {
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body class="no-scroll">
@@ -459,7 +492,7 @@
 
   <!-- Измеритель любви -->
   <section id="love-meter">
-    <div class="love-meter fade-in">
+    <div class="love-meter">
       <h3 class="meter-title">Насколько сильно я тебя люблю?</h3>
       <div class="meter-bar">
         <div class="meter-fill" id="meterFill"></div>
@@ -583,7 +616,6 @@
       const meterText = document.getElementById('meterText');
       
       loveButton.addEventListener('click', function() {
-        // Активируем текстовое поле и сдвигаем кнопку
         meterText.classList.add('active');
         loveButton.classList.add('active');
         
@@ -594,7 +626,6 @@
             meterText.textContent = 'Бесконечно!🤍';
             createHearts();
             
-            // Сброс через 5 секунд после завершения анимации сердечек
             setTimeout(() => {
               loveButton.disabled = false;
               loveButton.textContent = 'Измерить снова';
