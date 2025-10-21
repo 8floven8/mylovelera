@@ -111,7 +111,7 @@
       margin-top: 40px;
     }
 
-    .gallery img {
+    .gallery video {
       width: 250px;
       height: 250px;
       object-fit: cover;
@@ -120,7 +120,7 @@
       box-shadow: 0 0 15px rgba(255, 0, 170, 0.3);
     }
 
-    .gallery img:hover {
+    .gallery video:hover {
       transform: scale(1.08);
     }
 
@@ -139,12 +139,11 @@
     }
 
     .timer-unit {
-      background: rgba(255, 255, 255, 0.15);
       padding: 20px 15px;
       border-radius: 15px;
       min-width: 100px;
       flex-shrink: 0;
-      border: 2px solid rgba(255, 0, 170, 0.3);
+      border: 2px solid rgba(255, 0, 170, 0.4);
       box-shadow: 0 0 20px rgba(255, 0, 170, 0.2);
     }
 
@@ -194,6 +193,11 @@
       h2 {
         font-size: 1.5em !important;
       }
+      
+      .gallery video {
+        width: 200px;
+        height: 200px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -213,6 +217,11 @@
       .timer-label {
         font-size: 0.85em;
       }
+      
+      .gallery video {
+        width: 160px;
+        height: 160px;
+      }
     }
 
     /* Для очень маленьких экранов */
@@ -228,6 +237,15 @@
       
       .timer-label {
         font-size: 0.8em;
+      }
+      
+      .gallery video {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .gallery {
+        gap: 15px;
       }
     }
 
@@ -390,6 +408,10 @@
         <h3>Сегодня</h3>
         <p>Наконец-то он наступил, когда я снова нахожусь рядом с тобой.</p>
       </div>
+      <div class="event">
+        <h3>Будущее</h3>
+        <p>Переезд, свадьба, дети...</p>
+      </div>
     </div>
   </section>
 
@@ -397,10 +419,18 @@
   <section id="gallery">
     <h2>Моменты, которые я люблю🤍</h2>
     <div class="gallery">
-      <img src="images/gif1.gif" alt="Момент 1">
-      <img src="images/gif2.gif" alt="Момент 2">
-      <img src="images/gif3.gif" alt="Момент 3">
-      <img src="images/gif4.gif" alt="Момент 4">
+      <video autoplay loop muted playsinline>
+        <source src="images/video1.mp4" type="video/mp4">
+      </video>
+      <video autoplay loop muted playsinline>
+        <source src="images/video2.mp4" type="video/mp4">
+      </video>
+      <video autoplay loop muted playsinline>
+        <source src="images/video3.mp4" type="video/mp4">
+      </video>
+      <video autoplay loop muted playsinline>
+        <source src="images/video4.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
