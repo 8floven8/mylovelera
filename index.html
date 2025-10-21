@@ -11,6 +11,27 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
+      /* Отключаем выделение текста */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      /* Отключаем перетаскивание */
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+    }
+
+    /* Особо отключаем для изображений и видео */
+    img, video {
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      pointer-events: none; /* Дополнительная защита */
     }
 
     body {
@@ -18,6 +39,11 @@
       color: #fff;
       overflow-x: hidden;
       text-align: center;
+      /* Дублируем для body */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     body.no-scroll {
@@ -170,7 +196,7 @@
       text-align: left;
       border-left: 3px solid #f0a;
       padding-left: 20px;
-      animation: fadeIn 3s ease-in-out;
+      text-shadow: 0 0 10px #ddd;
     }
 
     /* Измеритель любви */
@@ -182,7 +208,7 @@
 
     .meter-title {
       font-size: 1.8rem;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       color: #fff;
       text-shadow: 0 0 10px #ddd;
     }
@@ -207,7 +233,7 @@
     .meter-text {
       font-size: 1.5rem;
       color: #fff;
-      min-height: 35px;
+      min-height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -220,8 +246,8 @@
 
     .meter-text.active {
       opacity: 1;
-      height: auto;
-      margin-bottom: 8px;
+      height: 40px;
+      margin-bottom: 15px;
     }
 
     .meter-btn {
@@ -251,7 +277,7 @@
     }
 
     .meter-btn.active {
-      margin-top: 10px;
+      margin-top: 0px;
     }
 
     .meter-status-container {
@@ -265,7 +291,6 @@
     #final h2 {
       font-size: 2.2em;
       color: #ddd;
-      animation: fadeIn 3s ease-in-out;
     }
 
     /* Анимация сердечек */
@@ -502,12 +527,18 @@
   <!-- Письмо -->
   <section id="letter">
     <h2>Письмо тебе 🖋️</h2>
-    <p id="typedText"></p>
+    <p>Моя любимая Лера 💞
+
+Ты — человек, с которым даже молчание имеет смысл.
+Ты — свет в моих днях и покой в моих мыслях.
+Каждый момент с тобой — это как вдох, без которого нельзя жить.
+
+Спасибо, что ты есть.</p>
   </section>
 
   <!-- Финал -->
   <section id="final">
-    <h2>Ты - мой самый любимый котенок</h2>
+    <h2>Ты - моя самая любимая девочка</h2>
   </section>
 
   <script>
@@ -545,30 +576,6 @@
       document.getElementById('hours').textContent = hours;
       document.getElementById('minutes').textContent = minutes;
       document.getElementById('seconds').textContent = seconds;
-    }
-
-    // Анимация письма
-    function typeLetter() {
-      const text = `Моя любимая Лера 💞
-
-Ты — человек, с которым даже молчание имеет смысл.
-Ты — свет в моих днях и покой в моих мыслях.
-Каждый момент с тобой — это как вдох, без которого нельзя жить.
-
-Спасибо, что ты есть.`;
-      
-      const typedText = document.getElementById('typedText');
-      let i = 0;
-      
-      function type() {
-        if (i < text.length) {
-          typedText.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, 50);
-        }
-      }
-      
-      type();
     }
 
     // Эффект смены текста в главной секции
@@ -663,10 +670,15 @@
       }
     }
 
+    // Запрет на контекстное меню (правый клик)
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
     // Инициализация
     function init() {
       createStars();
-      typeLetter();
       updateTimer();
       initLoveMeter();
       setInterval(updateTimer, 1000);
