@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Для Леры</title>
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0b0b0f, #000);
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      font-weight: 600;
+      text-shadow: 0 0 10px #ddd;
+    }
+
+    section {
+      padding: 80px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Звёзды */
+    .stars {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* Главная */
+    #home h1, #home p {
+      transition: opacity 1s ease-in-out;
+    }
+
+    #home h1 {
+      font-size: 2.5em;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    #home p {
+      margin-top: 20px;
+      font-size: 1.3em;
+      color: #ddd;
+      animation: fadeIn 5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Таймлайн */
+    .timeline {
+      max-width: 700px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .event {
+      margin: 20px 0;
+      border-left: 2px solid #f0a;
+      padding-left: 20px;
+    }
+
+    .event h3 {
+      color: #f0a;
+      text-shadow: 0 0 10px #f0a;
+    }
+
+    /* Галерея */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.4s;
+      box-shadow: 0 0 15px rgba(255, 0, 170, 0.3);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+    }
+
+    /* Таймер */
+    .timer-container {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .timer-unit {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      min-width: 80px;
+    }
+
+    .timer-value {
+      font-size: 2em;
+      font-weight: bold;
+      color: #f0a;
+      text-shadow: 0 0 10px #f0a;
+    }
+
+    .timer-label {
+      font-size: 0.9em;
+      margin-top: 5px;
+      color: #ddd;
+    }
+
+    /* Письмо */
+    #letter p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin-top: 30px;
+      line-height: 1.8;
+      white-space: pre-line;
+      text-align: left;
+      border-left: 3px solid #f0a;
+      padding-left: 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    /* Измеритель любви */
+    .love-meter {
+      margin: 20px auto;
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .meter-title {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      color: #fff;
+      text-shadow: 0 0 10px #ddd;
+    }
+
+    .meter-bar {
+      height: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      margin-bottom: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 0, 170, 0.3);
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff00aa, #ff6b8b);
+      width: 0%;
+      border-radius: 15px;
+      transition: width 0.5s ease-out;
+      box-shadow: 0 0 20px rgba(255, 0, 170, 0.5);
+    }
+
+    .meter-text {
+      font-size: 1.5rem;
+      color: #fff;
+      min-height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      margin-bottom: 0;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .meter-text.active {
+      opacity: 1;
+      height: auto;
+      margin-bottom: 8px;
+    }
+
+    .meter-btn {
+      background: linear-gradient(45deg, #ff00aa, #ff6b8b);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 15px rgba(255, 0, 170, 0.3);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .meter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(255, 0, 170, 0.4);
+    }
+
+    .meter-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .meter-btn.active {
+      margin-top: 10px;
+    }
+
+    .meter-status-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Финал */
+    #final h2 {
+      font-size: 2.2em;
+      color: #ddd;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    audio {
+      margin-top: 20px;
+    }
+
+    /* Анимация сердечек */
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 20px;
+      color: #ddd;
+      text-shadow: 0 0 10px #ddd;
+      animation: floatUp 5s linear forwards;
+    }
+  </style>
+</head>
+<body class="no-scroll">
+  <div class="stars"></div>
+
+  <!-- Главная -->
+  <section id="home">
+    <h1>Привет, Лера💫</h1>
+    <p></p>
+  </section>
+
+  <!-- Наша история -->
+  <section id="story">
+    <h2>Наша история 🤍</h2>
+    <div class="timeline">
+      <div class="event">
+        <h3>9 июля 2025</h3>
+        <p>Тот день, когда я понял, что ты — особенная.</p>
+      </div>
+      <div class="event">
+        <h3>2 августа 2025</h3>
+        <p>День взаимного согласия встречаться.</p>
+      </div>
+      <div class="event">
+        <h3>19 августа 2025</h3>
+        <p>Наша первая встреча, когда весь мир будто замер.</p>
+      </div>
+      <div class="event">
+        <h3>Сегодня</h3>
+        <p>Наконец-то он наступил, когда я снова нахожусь рядом с тобой.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section id="gallery">
+    <h2>Моменты, которые я люблю🤍</h2>
+    <div class="gallery">
+      <img src="images/gif1.gif" alt="Момент 1">
+      <img src="images/gif2.gif" alt="Момент 2">
+      <img src="images/gif3.gif" alt="Момент 3">
+      <img src="images/gif4.gif" alt="Момент 4">
+    </div>
+  </section>
+
+  <!-- Таймер -->
+  <section id="timer">
+    <h2>Наше время вместе</h2>
+    <div class="timer-container">
+      <div class="timer-unit">
+        <div class="timer-value" id="days">0</div>
+        <div class="timer-label">дней</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-value" id="hours">0</div>
+        <div class="timer-label">часов</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-value" id="minutes">0</div>
+        <div class="timer-label">минут</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-value" id="seconds">0</div>
+        <div class="timer-label">секунд</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Измеритель любви -->
+  <section id="love-meter">
+    <div class="love-meter fade-in">
+      <h3 class="meter-title">Насколько сильно я тебя люблю?</h3>
+      <div class="meter-bar">
+        <div class="meter-fill" id="meterFill"></div>
+      </div>
+      <div class="meter-status-container">
+        <div class="meter-text" id="meterText"></div>
+        <button class="meter-btn" id="loveButton">Измерить</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Письмо -->
+  <section id="letter">
+    <h2>Письмо тебе 🖋️</h2>
+    <p id="typedText"></p>
+  </section>
+
+  <!-- Музыка -->
+  <section id="music">
+    <h2>Наша мелодия 🎶</h2>
+    <audio controls autoplay loop>
+      <source src="music.mp3" type="audio/mpeg">
+      Твой браузер не поддерживает аудио.
+    </audio>
+  </section>
+
+  <!-- Финал -->
+  <section id="final">
+    <h2>Ты — мой космос 💫</h2>
+  </section>
+
+  <script>
+    // Создаём звёзды
+    function createStars() {
+      const stars = document.querySelector('.stars');
+      const starCount = 80;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        const size = Math.random() * 3;
+        star.style.width = star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${2 + Math.random() * 3}s`;
+        
+        stars.appendChild(star);
+      }
+    }
+
+    // Таймер
+    function updateTimer() {
+      const startDate = new Date('2025-08-02T07:44:00').getTime();
+      const now = Date.now();
+      const diff = now - startDate;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+
+    // Анимация письма
+    function typeLetter() {
+      const text = `Моя любимая Лера 💞
+
+Ты — человек, с которым даже молчание имеет смысл.
+Ты — свет в моих днях и покой в моих мыслях.
+Каждый момент с тобой — это как вдох, без которого нельзя жить.
+
+Спасибо, что ты есть.`;
+      
+      const typedText = document.getElementById('typedText');
+      let i = 0;
+      
+      function type() {
+        if (i < text.length) {
+          typedText.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 50);
+        }
+      }
+      
+      type();
+    }
+
+    // Эффект смены текста в главной секции
+    function changeMainText() {
+      const mainTitle = document.querySelector('#home h1');
+      
+      function fadeText(newText, delay, callback) {
+        mainTitle.style.opacity = '0';
+        
+        setTimeout(() => {
+          mainTitle.textContent = newText;
+          mainTitle.style.opacity = '1';
+          
+          if (callback) {
+            setTimeout(callback, delay);
+          }
+        }, 1000);
+      }
+      
+      fadeText("Этот сайт — мой подарок тебе. Всё, что здесь - создано с любовью.", 3000, () => {
+        fadeText("Листай)", 3000, () => {
+          document.body.classList.remove('no-scroll');
+        });
+      });
+    }
+
+    // Измеритель любви
+    function initLoveMeter() {
+      const loveButton = document.getElementById('loveButton');
+      const meterFill = document.getElementById('meterFill');
+      const meterText = document.getElementById('meterText');
+      
+      loveButton.addEventListener('click', function() {
+        // Активируем текстовое поле и сдвигаем кнопку
+        meterText.classList.add('active');
+        loveButton.classList.add('active');
+        
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+            meterText.textContent = 'Бесконечно!🤍';
+            createHearts();
+            
+            // Сброс через 5 секунд после завершения анимации сердечек
+            setTimeout(() => {
+              loveButton.disabled = false;
+              loveButton.textContent = 'Измерить снова';
+              loveButton.classList.remove('active');
+              meterFill.style.width = '0%';
+              meterText.textContent = '';
+              meterText.classList.remove('active');
+            }, 5000);
+            
+          } else {
+            width++;
+            meterFill.style.width = width + '%';
+            
+            if (width < 30) {
+              meterText.textContent = 'Немного...';
+            } else if (width < 60) {
+              meterText.textContent = 'Сильно!';
+            } else if (width < 90) {
+              meterText.textContent = 'Очень сильно!';
+            } else {
+              meterText.textContent = 'Бесконечно!';
+            }
+          }
+        }, 20);
+        
+        this.disabled = true;
+        this.textContent = 'Любовь измеряется...';
+      });
+    }
+
+    // Создание летающих сердечек
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.innerHTML = '🤍';
+          heart.classList.add('heart');
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.top = '100vh';
+          heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+          heart.style.opacity = Math.random() * 0.5 + 0.5;
+          
+          document.body.appendChild(heart);
+          
+          setTimeout(() => {
+            heart.remove();
+          }, 5000);
+        }, i * 150);
+      }
+    }
+
+    // Инициализация
+    function init() {
+      createStars();
+      typeLetter();
+      updateTimer();
+      initLoveMeter();
+      setInterval(updateTimer, 1000);
+      setTimeout(changeMainText, 3000);
+    }
+
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>
