@@ -6,17 +6,24 @@
   <title>Для Леры</title>
   <link rel="icon" href="icon.ico" type="image/x-icon">
   <style>
+    :root {
+      --accent-color: #f0a;
+      --accent-shadow: 0 0 10px #f0a;
+      --text-color: #fff;
+      --text-secondary: #ddd;
+      --bg-color: #000;
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      /* Отключаем выделение текста */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      /* Отключаем перетаскивание */
       -webkit-user-drag: none;
       -khtml-user-drag: none;
       -moz-user-drag: none;
@@ -24,11 +31,10 @@
     }
 
     body {
-      background: #000;
-      color: #fff;
+      background: var(--bg-color);
+      color: var(--text-color);
       overflow-x: hidden;
       text-align: center;
-      /* Дублируем для body */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -41,7 +47,7 @@
 
     h1, h2 {
       font-weight: 600;
-      text-shadow: 0 0 10px #ddd;
+      text-shadow: 0 0 10px var(--text-secondary);
     }
 
     section {
@@ -87,7 +93,7 @@
     #home p {
       margin-top: 20px;
       font-size: 1.3em;
-      color: #ddd;
+      color: var(--text-secondary);
       animation: fadeIn 5s ease-in-out;
       transition: opacity 1s ease-in-out;
     }
@@ -106,13 +112,13 @@
 
     .event {
       margin: 20px 0;
-      border-left: 2px solid #f0a;
+      border-left: 2px solid var(--accent-color);
       padding-left: 20px;
     }
 
     .event h3 {
-      color: #f0a;
-      text-shadow: 0 0 10px #f0a;
+      color: var(--accent-color);
+      text-shadow: var(--accent-shadow);
     }
 
     /* Галерея */
@@ -163,15 +169,15 @@
     .timer-value {
       font-size: 2.5em;
       font-weight: bold;
-      color: #f0a;
-      text-shadow: 0 0 15px #f0a;
+      color: var(--accent-color);
+      text-shadow: var(--accent-shadow);
       margin-bottom: 5px;
     }
 
     .timer-label {
       font-size: 1em;
       margin-top: 5px;
-      color: #ddd;
+      color: var(--text-secondary);
       font-weight: 500;
     }
 
@@ -183,9 +189,9 @@
       line-height: 1.8;
       white-space: pre-line;
       text-align: left;
-      border-left: 3px solid #f0a;
+      border-left: 3px solid var(--accent-color);
       padding-left: 20px;
-      text-shadow: 0 0 10px #ddd;
+      text-shadow: 0 0 10px var(--text-secondary);
     }
 
     /* Измеритель любви */
@@ -198,8 +204,8 @@
     .meter-title {
       font-size: 1.8rem;
       margin-bottom: 30px;
-      color: #fff;
-      text-shadow: 0 0 10px #ddd;
+      color: var(--text-color);
+      text-shadow: 0 0 10px var(--text-secondary);
     }
 
     .meter-bar {
@@ -221,12 +227,12 @@
 
     .meter-text {
       font-size: 1.5rem;
-      color: #fff;
+      color: var(--text-color);
       min-height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       margin-bottom: 0;
       opacity: 0;
       height: 0;
@@ -248,7 +254,7 @@
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: var(--transition);
       box-shadow: 0 8px 15px rgba(255, 0, 170, 0.3);
       margin-top: 0;
       margin-bottom: 0;
@@ -279,7 +285,7 @@
     /* Финал */
     #final h2 {
       font-size: 2.2em;
-      color: #ddd;
+      color: var(--text-secondary);
     }
 
     /* Анимация сердечек */
@@ -293,8 +299,8 @@
       pointer-events: none;
       z-index: 9999;
       font-size: 20px;
-      color: #ddd;
-      text-shadow: 0 0 10px #ddd;
+      color: var(--text-secondary);
+      text-shadow: 0 0 10px var(--text-secondary);
       animation: floatUp 5s linear forwards;
     }
 
